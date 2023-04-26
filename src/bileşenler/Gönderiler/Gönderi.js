@@ -5,7 +5,7 @@ import GönderiBaşlığı from './GönderiBaşlığı';
 
 const Gönderi = props => {
   // 🔥 Bu bileşenin parentının aşağıdaki propları düzgün gönderdiğinden emin olun.
-  const { gönderi, gonderiyiBegen } = props;
+  const { gönderi, gonderiyiBegenme, gonderiyiBegen } = props;
 
   return (
     <div className='post-border'>
@@ -20,8 +20,10 @@ const Gönderi = props => {
           src={gönderi.imageUrl}
         />
       </div>
+      <BeğenBölümü gonderiyiBegen={() => gonderiyiBegen(gönderi.id)} 
+      gonderiyiBegenme={() => gonderiyiBegenme(gönderi.id)}  begeniSayisi = {gönderi.likes} />
       {/* BeğenBölümü düzgün çalışması için ihtiyaç duyduğu tüm proplara sahip mi? */}
-      <BeğenBölümü gonderiyiBegen={() => gonderiyiBegen(gönderi.id)} />
+     
       {/* Yorumlar da proplara dikkat istiyor! */}
       <Yorumlar yorumlar={gönderi.comments} />
     </div>

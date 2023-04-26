@@ -8,13 +8,15 @@ import { faComment, faHeart } from '@fortawesome/free-regular-svg-icons';
 
 const BeğenBölümü = props => {
   // 🔥 Bu bileşenin parentının aşağıdaki propları düzgün gönderdiğinden emin olun.
-  const { gonderiyiBegen, begeniSayisi } = props;
+  const { gonderiyiBegenme, gonderiyiBegen, begeniSayisi } = props;
   const [liked, setLiked] = useState(false); 
 
   const birKereLike = () => {
     setLiked(!liked);
     if (!liked) {
       gonderiyiBegen();
+    } else {
+      gonderiyiBegenme();
     }
   }
   return (

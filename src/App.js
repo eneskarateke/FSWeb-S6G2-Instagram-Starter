@@ -13,7 +13,7 @@ import './App.css';
 import Gönderiler from "./bileşenler/Gönderiler/Gönderiler"
 import AramaÇubuğu from "./bileşenler/AramaÇubuğu/AramaÇubuğu"
 import sahteVeri from "./sahte-veri"
-import Gönderi from './bileşenler/Gönderiler/Gönderi';
+
 
 const App = () => {
   // Gönderi nesneleri dizisini tutmak için "gonderiler" adlı bir state oluşturun, **sahteVeri'yi yükleyin**.
@@ -34,16 +34,25 @@ const App = () => {
      */
         setGonderiler(gonderiler.map((gonderi) => {
           if (gonderi.id === gonderiID) {
-            return { ...gonderi, begeniSayisi: gonderi.begeniSayisi + 1 }; 
+            return { ...gonderi, likes: gonderi.likes + 1 }; 
           }
           return gonderi; 
         }));
       };
+      const gonderiyiBegenme = gonderiID => {
+       
+            setGonderiler(gonderiler.map((gonderi) => {
+              if (gonderi.id === gonderiID) {
+                return { ...gonderi, likes: gonderi.likes -1 }; 
+              }
+              return gonderi; 
+            }));
+          };
 
   return (
-    <div className='App'>
-      {<AramaÇubuğu />/* AramaÇubuğu ve Gönderiler'i render etmesi için buraya ekleyin */}
-      {<Gönderiler gonderiler = {gonderiler} gonderiyiBegen={gonderiyiBegen}/> /* Her bileşenin hangi proplara ihtiyaç duyduğunu kontrol edin, eğer ihtiyaç varsa ekleyin! */}
+    <div  key ={gonderiler.id} className='App'>
+    <AramaÇubuğu /> 
+    <Gönderiler gonderiler = {gonderiler} gonderiyiBegenme={gonderiyiBegenme} gonderiyiBegen={gonderiyiBegen}/> 
     </div>
   );
 };
